@@ -277,7 +277,7 @@ svg { display: inline-block; vertical-align: middle; fill: none; stroke: current
 .field input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; font: inherit; font-size: 24px; font-weight: 600; min-height: 52px; color: var(--text); font-variant-numeric: tabular-nums; }
 .field input::placeholder { color: var(--text-2); opacity: .7; font-weight: 500; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { min-height: 44px; min-width: 64px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--hairline); background: var(--card); color: var(--text); font-weight: 600; font-size: 15px; cursor: pointer; transition: background-color var(--snappy), color var(--snappy), border-color var(--snappy), transform var(--snappy), opacity var(--snappy); }
+.chip { display: inline-flex; align-items: center; justify-content: center; line-height: 1.2; min-height: 44px; min-width: 64px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--hairline); background: var(--card); color: var(--text); font-weight: 600; font-size: 15px; cursor: pointer; transition: background-color var(--snappy), color var(--snappy), border-color var(--snappy), transform var(--snappy), opacity var(--snappy); }
 .chip.is-on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .answer { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 12px; background: var(--soft); color: var(--on-soft); font-size: 16px; transition: background-color var(--snappy), color var(--snappy); }
 .answer.is-no { background: var(--warn-bg); color: var(--warn-text); }
@@ -477,6 +477,9 @@ svg { display: inline-block; vertical-align: middle; fill: none; stroke: current
 /* Section 10: video */
 .video-frame { margin: 32px 0 0; }
 .video-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--hero-base); border-radius: var(--radius-hero); object-fit: cover; box-shadow: 0 12px 22px -4px color-mix(in srgb, var(--hero-glow) 35%, transparent); }
+.video-fallback { display: block; position: relative; border-radius: var(--radius-hero); overflow: hidden; }
+.video-fallback img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.video-fallback span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, .72); color: #fff; padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; }
 .video-frame figcaption { margin-top: 14px; font-size: 14px; color: var(--text-2); }
 .video-frame figcaption a { font-weight: 600; }
 

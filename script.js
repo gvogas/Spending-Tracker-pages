@@ -431,6 +431,22 @@
     }));
   }
 
+  // ---------- Promo video: if this browser can't play it, show the poster and a link ----------
+  const promo = $('.js-promo');
+  if (promo) {
+    const fallback = () => {
+      if (!promo.isConnected) return;
+      const link = document.createElement('a');
+      link.className = 'video-fallback'; link.href = 'assets/promo.mp4';
+      link.innerHTML = '<img src="assets/promo-poster.jpg" alt=""><span>Watch or download the video</span>';
+      promo.replaceWith(link);
+    };
+    const source = $('source', promo);
+    if (source) source.addEventListener('error', fallback);
+    promo.addEventListener('error', fallback);
+    if (!promo.canPlayType('video/mp4')) fallback();
+  }
+
   // ---------- Reduce Motion: show end states at once ----------
   const applyReduce = () => { if (reduce()) $$('[data-animate]').forEach(el => { el.classList.add('is-in'); io.unobserve(el); const r = runners[el.dataset.animate]; if (r && !el._ran) { el._ran = true; r(el); } }); };
   reduceQuery.addEventListener('change', applyReduce);
