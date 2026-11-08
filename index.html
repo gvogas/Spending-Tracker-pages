@@ -1,20 +1,549 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Headroom</title>
-<style>
-body { font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 42em; margin: 2em auto; padding: 0 1em; color: #1d1d1f; }
-nav a { margin-right: 1em; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Headroom: safe to spend until payday (iPhone, Canada)</title>
+<meta name="description" content="Headroom shows what's safe to spend until payday, after bills and savings. Private, offline, no bank login. Free on iPhone; Pro is a one-time CAD 9.99 purchase.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F4F7">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E1512">
+<meta property="og:title" content="Headroom: safe to spend until payday">
+<meta property="og:description" content="One number, until payday. What's safe to spend after bills and savings, on your iPhone, with no bank login.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gvogas.github.io/Spending-Tracker-pages/">
+<meta property="og:image" content="https://gvogas.github.io/Spending-Tracker-pages/assets/promo-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://gvogas.github.io/Spending-Tracker-pages/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Ccircle cx='50' cy='50' r='27' fill='none' stroke='%23fff' stroke-width='14'/%3E%3Ccircle cx='50' cy='50' r='27' fill='none' stroke='%238FB4F2' stroke-width='14' stroke-dasharray='57 113' transform='rotate(30 50 50)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Headroom</h1>
-<p>Headroom answers one question: what can I safely spend before my next payday? It was called Spending Tracker until 8 November 2026.</p>
-<ul>
-<li><a href="privacy.html">Privacy policy</a></li>
-<li><a href="support.html">Support</a></li>
-</ul>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eye-slash" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.6 5.3A10.6 10.6 0 0 1 12 5c6.5 0 10 7 10 7a17.4 17.4 0 0 1-2.6 3.6M6.4 6.6A17 17 0 0 0 2 12s3.5 7 10 7a10 10 0 0 0 4.3-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1v-9Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></symbol>
+    <symbol id="i-plan" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3M13 14h3M8 18h3"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-faceid" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M9 9.5v1M15 9.5v1M12 9v4h-1M9 15.5c.8.7 1.8 1 3 1s2.2-.3 3-1"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3Z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-person-slash" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M3 3l18 18"/></symbol>
+    <symbol id="i-bank-slash" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18"/><path d="M3 3l18 18"/></symbol>
+    <symbol id="i-pulse-slash" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/><path d="M3 3l18 18"/></symbol>
+    <symbol id="i-fork" viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 4 0V3M9 3v18M17 3c-1.7 0-3 2-3 5v3h3v10"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h11.2L21 7H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></symbol>
+    <symbol id="i-tram" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="13" rx="3"/><path d="M5 11h14M9 21l1.5-3M15 21l-1.5-3M9 14h.01M15 14h.01"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17M7 3v2M11 3v2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7L8 5Z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Headroom, back to top">
+      <svg class="app-icon" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <defs><radialGradient id="g-nav" cx="22%" cy="20%" r="80%"><stop offset="0" stop-color="#2E64B8"/><stop offset="1" stop-color="#0B1F3A"/></radialGradient></defs>
+        <rect width="100" height="100" rx="23" fill="url(#g-nav)"/>
+        <circle cx="50" cy="50" r="27" fill="none" stroke="#fff" stroke-width="14"/>
+        <circle cx="50" cy="50" r="27" fill="none" stroke="#8FB4F2" stroke-width="14" stroke-dasharray="57 113" transform="rotate(30 50 50)"/>
+      </svg>
+      <span>Headroom</span>
+    </a>
+    <button type="button" class="store-badge pressable" id="store-badge">
+      <svg aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+      <span class="store-badge-text"><small>Coming soon</small>to the App Store</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 2. Hero -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">For iPhone · English and French (Canada)</p>
+      <h1 id="hero-title">Can I spend $120 before Friday?</h1>
+      <p class="lede">Enter your balance, your payday and your bills. Headroom shows what's safe to spend until payday, and how much that is a day.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary pressable" href="#how">See how the number works</a>
+        <a class="btn btn-quiet pressable" href="#video">Watch the tour</a>
+      </div>
+      <ul class="hero-points" aria-label="Highlights">
+        <li>Free, with a one-time Pro upgrade</li>
+        <li>Works without an account or bank login</li>
+        <li>Everything stays on your iPhone</li>
+      </ul>
+    </div>
+
+    <div class="hero-device">
+      <div class="phone themed" id="hero-phone" data-theme="navy" role="group" aria-label="Interactive preview of the Home screen">
+        <div class="screen">
+          <div class="island" aria-hidden="true"></div>
+          <div class="status" aria-hidden="true"><span>9:41</span><span class="status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
+          <div class="navbar">
+            <button type="button" class="nav-btn pressable" aria-label="Settings (preview)"><svg aria-hidden="true"><use href="#i-gear"/></svg></button>
+            <span class="nav-title">Safe to spend</span>
+            <span class="nav-right">
+              <button type="button" class="nav-btn pressable js-hide-amounts" aria-pressed="false" aria-label="Hide amounts"><svg class="ic-eye" aria-hidden="true"><use href="#i-eye"/></svg><svg class="ic-eye-slash" aria-hidden="true"><use href="#i-eye-slash"/></svg></button>
+              <button type="button" class="nav-btn pressable" aria-label="Add a transaction (preview)"><svg aria-hidden="true"><use href="#i-plus"/></svg></button>
+            </span>
+          </div>
+          <div class="content" id="home-screen">
+            <p class="greeting">Good morning · Mon, Nov 2</p>
+            <section class="hero-card" aria-label="Safe to spend">
+              <div class="hero-top"><span class="eyebrow on-hero">Safe to spend</span><span class="stamp">Payday in 8 days</span></div>
+              <p class="money money-hero js-hero-figure amt" data-minor="28500" data-from="0" aria-label="Safe to spend, 285 dollars"><span class="whole">$0</span><span class="cents">.00</span></p>
+              <p class="until">until payday Tue, Nov 10 · 8 days</p>
+              <button type="button" class="hero-link pressable js-split-toggle" aria-expanded="false" aria-controls="split-card"><span class="js-split-label">Where's the rest of my <span class="amt" data-amt="$850.00">$850.00</span>?</span><svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+            </section>
+            <div class="fold" id="split-card">
+              <div class="fold-inner">
+                <section class="card split" aria-label="Where your $850.00 is going">
+                  <p class="split-title">Where your <span class="amt" data-amt="$850.00">$850.00</span> is going</p>
+                  <div class="split-bar" aria-hidden="true">
+                    <span class="seg bills" style="--w:35.3%"></span><span class="seg aside" style="--w:31.2%"></span><span class="seg safe" style="--w:33.5%"></span>
+                  </div>
+                  <ul class="legend">
+                    <li><i class="dot bills"></i>Bills before payday<b class="amt" data-amt="$300.00">$300.00</b></li>
+                    <li><i class="dot aside"></i>Set aside<b class="amt" data-amt="$265.00">$265.00</b></li>
+                    <li><i class="dot safe"></i>Safe to spend<b class="amt" data-amt="$285.00">$285.00</b></li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <div class="tiles">
+              <section class="card tile" aria-label="Today: $30.88 left of $35.63, $4.75 spent">
+                <span class="ring" aria-hidden="true" style="--f:0.133"><svg viewBox="0 0 56 56"><circle class="track" cx="28" cy="28" r="24"/><circle class="fill" cx="28" cy="28" r="24"/></svg><svg class="ring-glyph"><use href="#i-check"/></svg></span>
+                <span class="tile-text"><span class="eyebrow">Today</span><b class="tile-figure amt js-today-left" data-amt="$30.88">$30.88 left</b><span class="tile-sub">of <span class="amt" data-amt="$35.63">$35.63</span> · <span class="amt" data-amt="$4.75">$4.75</span> spent</span></span>
+              </section>
+              <section class="card tile" aria-label="Payday in 8 days, Tuesday November 10">
+                <span class="tile-icon" aria-hidden="true"><svg><use href="#i-calendar"/></svg></span>
+                <span class="tile-text"><span class="eyebrow">Payday</span><b class="tile-figure">8 days</b><span class="tile-sub">Tue, Nov 10</span></span>
+              </section>
+            </div>
+            <section class="coming" aria-label="Coming up">
+              <div class="coming-head"><h3>Coming up</h3><span class="amt" data-amt="$300.00">$300.00 counted</span></div>
+              <div class="bills js-bills">
+                <div class="bill-wrap">
+                  <div class="bill" data-name="Spotify">
+                    <span class="date soon" aria-hidden="true"><small>Nov</small><b>3</b></span>
+                    <span class="bill-text"><b>Spotify</b><span>Due tomorrow · counted</span></span>
+                    <b class="bill-amt amt" data-amt="$16.99">$16.99</b>
+                    <button type="button" class="paid pressable js-pay" aria-label="Mark Spotify paid">Paid</button>
+                  </div>
+                </div>
+                <div class="bill-wrap">
+                  <div class="bill" data-name="Phone">
+                    <span class="date soon" aria-hidden="true"><small>Nov</small><b>5</b></span>
+                    <span class="bill-text"><b>Phone</b><span>In 3 days · counted</span></span>
+                    <b class="bill-amt amt" data-amt="$65.00">$65.00</b>
+                    <button type="button" class="paid pressable js-pay" aria-label="Mark Phone paid">Paid</button>
+                  </div>
+                </div>
+                <div class="bill-wrap">
+                  <div class="bill" data-name="Rent">
+                    <span class="date" aria-hidden="true"><small>Nov</small><b>10</b></span>
+                    <span class="bill-text"><b>Rent</b><span>Due on payday · not counted</span></span>
+                    <b class="bill-amt amt muted" data-amt="$1,200.00">$1,200.00</b>
+                    <button type="button" class="paid pressable js-pay" aria-label="Mark Rent paid">Paid</button>
+                  </div>
+                </div>
+              </div>
+              <p class="more">2 more later · see Plan</p>
+              <p class="add-bill"><svg aria-hidden="true"><use href="#i-plus"/></svg>Add a bill</p>
+            </section>
+            <p class="foot-note">An estimate from what you've entered, not your bank balance · Bank check 3 days ago</p>
+          </div>
+          <nav class="tabbar" aria-label="App tabs (preview)">
+            <span class="tab on"><svg aria-hidden="true"><use href="#i-home"/></svg>Home</span>
+            <span class="tab"><svg aria-hidden="true"><use href="#i-list"/></svg>Transactions</span>
+            <span class="tab"><svg aria-hidden="true"><use href="#i-plan"/></svg>Plan</span>
+            <span class="tab"><svg aria-hidden="true"><use href="#i-chart"/></svg>Insights</span>
+          </nav>
+          <div class="banner js-banner" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+      <p class="device-hint">Tap <em>Where's the rest of my $850.00?</em>, the eye, or <em>Paid</em>. <button type="button" class="link-btn js-hero-replay">Replay</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. How the number works -->
+<section class="section" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <p class="eyebrow">How the number works</p>
+    <h2 id="how-title">Your balance, minus bills and savings, divided by the days to payday.</h2>
+    <p class="lede">Safe to spend is your balance minus the bills due before payday and whatever you've set aside. Divided by the days left, it becomes a daily amount.</p>
+    <div class="formula card" data-animate="formula">
+      <ol class="formula-rows" aria-label="Sample calculation">
+        <li><span class="f-label">Balance</span><b class="money f-fig" data-minor="85000" data-from="0">$850.00</b></li>
+        <li><span class="f-label"><i class="dot bills"></i>Bills before payday</span><b class="money f-fig" data-minor="30000" data-from="0" data-prefix="− ">− $300.00</b></li>
+        <li><span class="f-label"><i class="dot aside"></i>Set aside for savings</span><b class="money f-fig" data-minor="15000" data-from="0" data-prefix="− ">− $150.00</b></li>
+        <li><span class="f-label"><i class="dot aside2"></i>Other set-asides</span><b class="money f-fig" data-minor="11500" data-from="0" data-prefix="− ">− $115.00</b></li>
+        <li class="f-result"><span class="f-label"><i class="dot safe"></i>Safe to spend</span><b class="money f-fig accent" data-minor="28500" data-from="0">$285.00</b></li>
+      </ol>
+      <div class="formula-visual">
+        <div class="stack" role="img" aria-label="Stacked bar of the $850.00 balance: $300.00 bills, $150.00 savings, $115.00 other set-asides, $285.00 safe to spend">
+          <span class="seg bills" style="--w:35.3%"></span><span class="seg aside" style="--w:17.6%"></span><span class="seg aside2" style="--w:13.5%"></span><span class="seg safe" style="--w:33.5%"></span>
+        </div>
+        <ul class="legend legend-row" aria-hidden="true">
+          <li><i class="dot bills"></i>Bills</li><li><i class="dot aside"></i>Savings</li><li><i class="dot aside2"></i>Other</li><li><i class="dot safe"></i>Safe to spend</li>
+        </ul>
+        <div class="daily">
+          <span class="daily-label">÷ 8 days until payday</span>
+          <p class="daily-figure"><b class="money f-day" data-minor="3563" data-from="0">$35.63</b> <span>a day</span></p>
+          <p class="daily-note">The app keeps exact cents and rounds only what it shows you.</p>
+        </div>
+      </div>
+    </div>
+    <p class="small-note">Rent lands on payday, so it isn't counted against this period. Bills are counted once, never twice.</p>
+  </div>
+</section>
+
+<!-- 4. Calculator -->
+<section class="section" id="ask" aria-labelledby="ask-title">
+  <div class="wrap ask-grid">
+    <div>
+      <p class="eyebrow">Plan</p>
+      <h2 id="ask-title">Can I spend this before payday?</h2>
+      <p class="lede">Type any amount. The app recalculates with your balance lowered by that much, so bills and set-asides are always protected. You get the answer in a sentence.</p>
+      <p class="small-note">Sample figures: $285.00 safe to spend, 8 days to payday.</p>
+    </div>
+    <form class="card ask-card" id="ask-form" novalidate>
+      <label class="ask-label" for="ask-amount">Can I spend this before payday?</label>
+      <div class="field">
+        <span class="field-symbol" aria-hidden="true">$</span>
+        <input id="ask-amount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Amount" value="120" aria-describedby="ask-answer">
+      </div>
+      <div class="chips" role="group" aria-label="Quick amounts">
+        <button type="button" class="chip pressable" data-amount="20">$20</button>
+        <button type="button" class="chip pressable" data-amount="50">$50</button>
+        <button type="button" class="chip pressable is-on" data-amount="120" aria-pressed="true">$120</button>
+        <button type="button" class="chip pressable" data-amount="250">$250</button>
+      </div>
+      <div class="answer" id="ask-answer" aria-live="polite">
+        <svg class="answer-icon yes" aria-hidden="true"><use href="#i-check"/></svg>
+        <p><strong class="verdict">Yes.</strong> <span class="detail">You would still have <b class="money" data-minor="16500">$165.00</b> to spend, about <b class="money" data-minor="2063">$20.63</b> a day until payday.</span></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- 5. Momentum + Insights -->
+<section class="section" id="insights" aria-labelledby="insights-title">
+  <div class="wrap">
+    <p class="eyebrow">Insights</p>
+    <h2 id="insights-title">See the shape of your week, without being nagged.</h2>
+    <p class="lede">Everyday spending only, so paying a bill never breaks a run. An over day says "Tomorrow starts fresh." and nothing more.</p>
+    <div class="insight-grid">
+
+      <section class="card momentum" data-animate="momentum" aria-label="Momentum: 4 days in a row under your allowance. Last 7 days $116.23 of $249.41, $133.18 under.">
+        <div class="card-head"><h3>4 days in a row under your allowance</h3><svg class="spark" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
+        <div class="dots" aria-hidden="true">
+          <span class="day" style="--i:0"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>T</small></span>
+          <span class="day" style="--i:1"><span class="dot-wrap quiet"><svg><use href="#i-minus"/></svg></span><small>W</small></span>
+          <span class="day" style="--i:2"><span class="dot-wrap over"><svg><use href="#i-up"/></svg></span><small>T</small></span>
+          <span class="day" style="--i:3"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>F</small></span>
+          <span class="day" style="--i:4"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>S</small></span>
+          <span class="day" style="--i:5"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>S</small></span>
+          <span class="day today" style="--i:6"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>M</small></span>
+        </div>
+        <div class="meter" aria-hidden="true"><span style="--f:46.6%"></span></div>
+        <p class="card-foot">Last 7 days $116.23 of $249.41 · $133.18 under</p>
+      </section>
+
+      <section class="card daily-card" data-animate="bars" aria-label="Everyday spending, last 14 days: 2 days over today's allowance of $35.63, about $19.13 a day on average.">
+        <div class="card-head"><h3>Everyday spending</h3><span class="card-sub">Last 14 days, without bills</span></div>
+        <div class="bars" aria-hidden="true" style="--max:46.1">
+          <span class="rule" style="--y:35.63"></span>
+          <span class="bar" style="--v:12.4"><i></i><small>20</small></span>
+          <span class="bar" style="--v:28.75"><i></i><small>21</small></span>
+          <span class="bar over" style="--v:46.1"><i></i><small>22</small></span>
+          <span class="bar" style="--v:9.9"><i></i><small>23</small></span>
+          <span class="bar" style="--v:33.1"><i></i><small>24</small></span>
+          <span class="bar" style="--v:0"><i></i><small>25</small></span>
+          <span class="bar" style="--v:21.3"><i></i><small>26</small></span>
+          <span class="bar" style="--v:18.4"><i></i><small>27</small></span>
+          <span class="bar" style="--v:0"><i></i><small>28</small></span>
+          <span class="bar over" style="--v:41.2"><i></i><small>29</small></span>
+          <span class="bar" style="--v:12.75"><i></i><small>30</small></span>
+          <span class="bar" style="--v:24.6"><i></i><small>31</small></span>
+          <span class="bar" style="--v:14.53"><i></i><small>1</small></span>
+          <span class="bar today" style="--v:4.75"><i></i><small>2</small></span>
+        </div>
+        <p class="card-foot ink">Dashed line: today's allowance $35.63 · 2 days over · $19.13 a day on average</p>
+      </section>
+
+      <section class="card where" data-animate="ring" aria-label="Where it went, October: Groceries 47 percent, Coffee and food 21 percent, Transit 14 percent, Fun 11 percent, Other 7 percent. Total $452.45.">
+        <div class="card-head"><h3>Where it went</h3><span class="card-sub">October</span></div>
+        <div class="where-top">
+          <div class="ring-chart" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <circle class="arc c0" cx="50" cy="50" r="40" style="--len:46.9"/>
+              <circle class="arc c1" cx="50" cy="50" r="40" style="--len:21.2;--off:46.9"/>
+              <circle class="arc c2" cx="50" cy="50" r="40" style="--len:14.1;--off:68.1"/>
+              <circle class="arc c3" cx="50" cy="50" r="40" style="--len:10.8;--off:82.2"/>
+              <circle class="arc c4" cx="50" cy="50" r="40" style="--len:6.9;--off:93"/>
+            </svg>
+            <span class="ring-center"><small>Total</small><b class="money" data-minor="45245" data-from="0">$452.45</b></span>
+          </div>
+          <ul class="legend shares" aria-hidden="true">
+            <li><i class="dot c0"></i>Groceries<b>47%</b></li>
+            <li><i class="dot c1"></i>Coffee &amp; food<b>21%</b></li>
+            <li><i class="dot c2"></i>Transit<b>14%</b></li>
+            <li><i class="dot c3"></i>Fun<b>11%</b></li>
+            <li><i class="dot c4"></i>Other<b>7%</b></li>
+          </ul>
+        </div>
+        <ul class="rows" aria-hidden="true">
+          <li><span>Groceries<small>6 purchases · about $35.40 each</small></span><b>$212.40</b></li>
+          <li><span>Coffee &amp; food<small>11 purchases · about $8.74 each</small></span><b>$96.10</b></li>
+          <li><span>Transit<small>19 purchases · about $3.37 each</small></span><b>$64.00</b></li>
+          <li><span>Fun<small>3 purchases · about $16.25 each</small></span><b>$48.75</b></li>
+          <li><span>Other<small>2 purchases · about $15.60 each</small></span><b>$31.20</b></li>
+        </ul>
+      </section>
+
+      <section class="card cal-card" data-animate="calendar" aria-label="Day by day, October. Darker days are bigger everyday-spending days. The busiest day was Saturday, October 10, $51.20.">
+        <div class="card-head"><h3>Day by day</h3><span class="card-sub">October · everyday spending</span></div>
+        <div class="cal js-cal" aria-hidden="true"></div>
+        <p class="card-foot js-cal-foot">Darker days are bigger spending days. Tap a day for its total.</p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Log it in seconds -->
+<section class="section" id="log" aria-labelledby="log-title">
+  <div class="wrap log-grid">
+    <div class="log-copy">
+      <p class="eyebrow">Add transaction</p>
+      <h2 id="log-title">Log it in seconds.</h2>
+      <p class="lede">Your usual comes first: the things you've logged more than once lately. Tap one, change anything, save. Before you do, the sheet tells you what safe to spend would become.</p>
+      <ul class="feature-list">
+        <li><b>Live preview.</b> "Safe to spend would be $260.00 ($32.50 a day)", or a plain warning if it would leave you short.</li>
+        <li><b>Log again, undo.</b> Swipe a past transaction to log it again today. Deleted or logged by mistake? Undo for five seconds, or restore from Recently deleted within 30 days.</li>
+        <li><b>Siri and Shortcuts.</b> "Log an expense in Headroom" works with no setup.</li>
+        <li><b>On your wrist.</b> The Apple Watch app and complications show safe to spend and what's left today.</li>
+        <li><b>Receipts.</b> Type them in, or scan a photo with Pro. Read on the device, never uploaded.</li>
+      </ul>
+    </div>
+    <div class="hero-device">
+      <div class="phone" id="add-phone" role="group" aria-label="Interactive preview of the Add transaction sheet">
+        <div class="screen">
+          <div class="island" aria-hidden="true"></div>
+          <div class="status" aria-hidden="true"><span>9:41</span><span class="status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
+          <div class="behind js-behind" aria-hidden="true"></div>
+          <div class="sheet js-sheet">
+            <span class="grabber" aria-hidden="true"></span>
+            <div class="sheet-bar"><span class="sheet-cancel">Cancel</span><b>Add transaction</b><span></span></div>
+            <div class="sheet-body">
+              <div class="segmented" role="radiogroup" aria-label="Kind"><span class="on" role="radio" aria-checked="true">Expense</span><span role="radio" aria-checked="false">Income</span><span role="radio" aria-checked="false">Refund</span></div>
+              <p class="sheet-eyebrow">Your usual</p>
+              <div class="picks" role="group" aria-label="Your usual">
+                <button type="button" class="pick pressable js-pick" data-minor="1250" data-note="Burrito" data-cat="Coffee &amp; food"><svg aria-hidden="true"><use href="#i-fork"/></svg><span>Burrito<small>$12.50</small></span></button>
+                <button type="button" class="pick pressable js-pick" data-minor="2500" data-note="No Frills" data-cat="Groceries"><svg aria-hidden="true"><use href="#i-cart"/></svg><span>No Frills<small>$25.00</small></span></button>
+                <button type="button" class="pick pressable js-pick" data-minor="335" data-note="Presto" data-cat="Transit"><svg aria-hidden="true"><use href="#i-tram"/></svg><span>Presto<small>$3.35</small></span></button>
+                <button type="button" class="pick pressable js-pick" data-minor="475" data-note="Coffee" data-cat="Coffee &amp; food"><svg aria-hidden="true"><use href="#i-cup"/></svg><span>Coffee<small>$4.75</small></span></button>
+              </div>
+              <p class="sheet-foot">Things you've logged more than once lately. Tap one, then change anything before saving.</p>
+              <p class="sheet-eyebrow">Amount</p>
+              <div class="sheet-card">
+                <div class="amount-field js-amount-field"><span class="sym">$</span><span class="amount js-amount placeholder">0.00</span></div>
+                <p class="preview js-preview"><svg aria-hidden="true"><use href="#i-info"/></svg><span>Safe to spend would be <b class="money" data-minor="28500">$285.00</b> (<b class="money" data-minor="3563">$35.63</b> a day)</span></p>
+              </div>
+              <p class="sheet-eyebrow">Category</p>
+              <div class="cats js-cats"><span data-cat="Groceries">Groceries</span><span data-cat="Coffee &amp; food">Coffee &amp; food</span><span data-cat="Transit">Transit</span><span data-cat="Fun">Fun</span></div>
+              <div class="sheet-card note-row"><span class="js-note placeholder">Note (optional), e.g. Lunch with Sam</span><span class="note-date">Today</span></div>
+            </div>
+            <button type="button" class="save pressable js-save" disabled>Save</button>
+          </div>
+          <div class="banner js-banner" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+      <p class="device-hint">Tap a chip, then <em>Save</em>. <button type="button" class="link-btn js-add-replay">Replay</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Private by design -->
+<section class="section" id="privacy" aria-labelledby="privacy-title" data-animate="privacy">
+  <div class="wrap">
+    <p class="eyebrow">Private by design</p>
+    <h2 id="privacy-title">Your money stays your business.</h2>
+    <p class="lede">The app makes no network requests apart from the App Store purchase. There's no account to create, so there's nothing on a server to leak.</p>
+    <div class="privacy-grid">
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-person-slash"/></svg><h3>No account</h3><p>Open the app and enter a balance. That's the whole setup.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-bank-slash"/></svg><h3>No bank login</h3><p>Check against your bank by typing in what it shows. The app never connects.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-pulse-slash"/></svg><h3>No analytics</h3><p>Apple's privacy label for the app reads Data Not Collected. It contains no tracking or crash-reporting code.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-faceid"/></svg><h3>Face ID lock</h3><p>Lock the app, and the figures stay off the widget and Siri until you unlock.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-shield"/></svg><h3>Encrypted backup</h3><p>A backup file encrypted with a passphrase you choose, made by hand or automatically every week into a Files folder you pick.</p></div>
+      <div class="card p-item p-hide">
+        <div class="p-hide-head">
+          <svg aria-hidden="true"><use href="#i-eye-slash"/></svg>
+          <h3>Hide amounts</h3>
+          <button type="button" class="switch js-mask-switch" role="switch" aria-checked="false" aria-label="Hide amounts in this preview"><span class="knob"></span></button>
+        </div>
+        <p>One tap masks every figure in the app and on the widget as <code>$•••</code>, for when someone is looking over your shoulder.</p>
+        <div class="widget themed" data-theme="navy" aria-hidden="true">
+          <span class="eyebrow on-hero">Safe to spend</span>
+          <b class="amt w-fig" data-amt="$285.00">$285.00</b>
+          <span class="w-sub"><span class="amt" data-amt="$35.63">$35.63</span> a day · 8 days</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Free vs Pro -->
+<section class="section" id="pro" aria-labelledby="pro-title">
+  <div class="wrap">
+    <p class="eyebrow">Free and Pro</p>
+    <h2 id="pro-title">Pay once, if you want more.</h2>
+    <p class="lede pro-rule"><b>Anything that protects you or keeps the figure accurate is free.</b> Pro adds history, customization and convenience for one payment. No subscription.</p>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Free</th><th scope="col" class="pro-col">Pro · CAD 9.99 once</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Safe to spend, daily allowance, bills, shortfall warnings</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">Transactions, bank check, Undo and Recently deleted</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">App lock and encrypted backup, weekly automatic backup to Files</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">Reminders</th><td data-col="Free">Bill reminders, and a nudge on days nothing was logged</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">Split a receipt across categories</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">Hide amounts</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">Apple Watch</th><td data-col="Free">Safe to spend and today's amount on your wrist, with complications</td><td data-col="Pro">Included</td></tr>
+          <tr><th scope="row">History</th><td data-col="Free">This month and last</td><td data-col="Pro">Any month from the last year (categories and day by day), 12-month trends with plain-language notes</td></tr>
+          <tr><th scope="row">Savings goals</th><td data-col="Free">Up to 2</td><td data-col="Pro">Unlimited, with a projection: "At this rate you reach Laptop on Mar 12."</td></tr>
+          <tr><th scope="row">Categories</th><td data-col="Free">Built-in set</td><td data-col="Pro">Create, rename and merge</td></tr>
+          <tr><th scope="row">Receipts</th><td data-col="Free">Type them in</td><td data-col="Pro">Scan a photo to fill in the total, date and shop; keep the photo with the transaction (opt-in, on device)</td></tr>
+          <tr><th scope="row">Home Screen widgets</th><td data-col="Free">Small (safe to spend)</td><td data-col="Pro">Medium and Lock Screen widgets, a Log my usual button that logs without opening the app, and a Live Activity for trips</td></tr>
+          <tr><th scope="row">Exports</th><td data-col="Free">Not included</td><td data-col="Pro">Every transaction as a spreadsheet (CSV), monthly and year-end PDF summaries, and a read-only month to share with a partner or parent</td></tr>
+          <tr><th scope="row">Paydays</th><td data-col="Free">Safe to spend starts over each payday</td><td data-col="Pro">A review of each pay period, a note on payday morning, and automatic set-asides each payday</td></tr>
+          <tr><th scope="row">Trips</th><td data-col="Free">Not included</td><td data-col="Pro">Set money aside for a trip; while you're away, Home leads with what's left for the trip and per day</td></tr>
+          <tr><th scope="row">Looking ahead</th><td data-col="Free">Bills before payday</td><td data-col="Pro">Bill forecast: twelve months of bills, yearly ones as spikes, the expensive month named</td></tr>
+          <tr><th scope="row">Looking back</th><td data-col="Free">Not included</td><td data-col="Pro">Monthly report card in four lines, shareable as an image</td></tr>
+          <tr><th scope="row">Look and feel</th><td data-col="Free">Navy</td><td data-col="Pro">Six accent palettes (navy, teal, indigo, plum, forest, graphite) with matching app icons</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small-note">Paid once through the App Store. If a purchase is refunded, Pro turns off and your data stays yours: nothing you entered is lost or hidden.</p>
+  </div>
+</section>
+
+<!-- 9. Pro themes -->
+<section class="section" id="themes" aria-labelledby="themes-title" data-animate="themes">
+  <div class="wrap themes-grid">
+    <div>
+      <p class="eyebrow">Pro themes</p>
+      <h2 id="themes-title">Six palettes, one calm look.</h2>
+      <p class="lede">The accent, the soft tints and the hero surface follow your choice everywhere in the app, and the app icon changes to match. Hover or tap a swatch to try one on the Home mockup.</p>
+      <div class="swatches" role="group" aria-label="Pro themes">
+        <button type="button" class="swatch pressable is-on" data-theme="navy" aria-pressed="true"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Navy</span></button>
+        <button type="button" class="swatch pressable" data-theme="teal" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Teal</span></button>
+        <button type="button" class="swatch pressable" data-theme="indigo" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Indigo</span></button>
+        <button type="button" class="swatch pressable" data-theme="plum" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Plum</span></button>
+        <button type="button" class="swatch pressable" data-theme="forest" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Forest</span></button>
+        <button type="button" class="swatch pressable" data-theme="graphite" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Graphite</span></button>
+      </div>
+    </div>
+    <div class="theme-preview themed" data-theme="navy" aria-hidden="true">
+      <section class="hero-card">
+        <div class="hero-top"><span class="eyebrow on-hero">Safe to spend</span><span class="stamp">Payday in 8 days</span></div>
+        <p class="money money-hero"><span class="whole">$285</span><span class="cents">.00</span></p>
+        <p class="until">until payday Tue, Nov 10 · 8 days</p>
+        <span class="hero-link">Where's the rest of my $850.00?<svg class="chev"><use href="#i-chevron"/></svg></span>
+      </section>
+      <div class="tiles">
+        <section class="card tile"><span class="ring is-in" style="--f:0.133"><svg viewBox="0 0 56 56"><circle class="track" cx="28" cy="28" r="24"/><circle class="fill" cx="28" cy="28" r="24"/></svg><svg class="ring-glyph"><use href="#i-check"/></svg></span><span class="tile-text"><span class="eyebrow">Today</span><b class="tile-figure">$30.88 left</b><span class="tile-sub">of $35.63 · $4.75 spent</span></span></section>
+        <section class="card tile"><span class="tile-icon"><svg><use href="#i-calendar"/></svg></span><span class="tile-text"><span class="eyebrow">Payday</span><b class="tile-figure">8 days</b><span class="tile-sub">Tue, Nov 10</span></span></section>
+      </div>
+      <div class="chips preview-chips"><span class="chip is-on">$120</span><span class="chip">$250</span><span class="chip">Groceries</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Video -->
+<section class="section" id="video" aria-labelledby="video-title">
+  <div class="wrap">
+    <p class="eyebrow">Tour</p>
+    <h2 id="video-title">See it in 50 seconds.</h2>
+    <figure class="video-frame">
+      <video controls playsinline preload="metadata" poster="assets/promo-poster.jpg" src="assets/promo.mp4" aria-label="Headroom promo video"></video>
+      <figcaption>From a balance and a payday to one number, with the sample figures used on this page. Also as a <a href="assets/promo-vertical.mp4">vertical version</a> for phones, a 30-second cut (<a href="assets/promo-30s.mp4">landscape</a>, <a href="assets/promo-30s-vertical.mp4">vertical</a>) and a 10-second one (<a href="assets/promo-10s.mp4">landscape</a>, <a href="assets/promo-10s-vertical.mp4">vertical</a>).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 11. Questions -->
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2 id="faq-title">Before you download</h2>
+    <div class="faq">
+      <details class="card"><summary>Is safe to spend my bank balance?</summary><p>No. It's an estimate from the balance, bills and set-asides you enter, so it's as current as what you've typed. Compare it with your bank now and then, and update the balance if they differ.</p></details>
+      <details class="card"><summary>I don't get paid every two weeks. Does it still work?</summary><p>Yes. Pick weekly, every two weeks, twice a month or monthly, or enter each next payday yourself.</p></details>
+      <details class="card"><summary>Is it in French?</summary><p>Yes. The app is in English and French (Canada), and every amount is in Canadian dollars.</p></details>
+      <details class="card"><summary>What do I need?</summary><p>An iPhone on iOS 26 or later. The Apple Watch app is optional and needs watchOS 26.</p></details>
+      <details class="card"><summary>What happens to my data if I delete the app?</summary><p>Your data lives only on your iPhone, so deleting the app deletes it. Turn on the weekly encrypted backup and you can restore it from your Files folder.</p></details>
+      <details class="card"><summary>How much does it cost?</summary><p>The app is free. Pro is a one-time CAD 9.99 purchase with no subscription. If a purchase is refunded, Pro turns off and nothing you entered is lost or hidden.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Closing call to action -->
+<section class="section closing" aria-labelledby="closing-title">
+  <div class="wrap">
+    <h2 id="closing-title">Know what you can actually afford.</h2>
+    <p class="lede">Free on iPhone. Pro once for CAD 9.99. Coming soon to the App Store.</p>
+    <!-- Without JavaScript this posts normally and Formspree shows its own thank-you page. -->
+    <form class="notify js-notify" id="notify" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="Headroom email list">
+      <input type="hidden" name="list" value="launch and updates">
+      <div class="notify-row">
+        <label class="visually-hidden" for="notify-email">Email address</label>
+        <input class="notify-input" id="notify-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" aria-describedby="notify-status notify-note">
+        <!-- Honeypot: people never see or fill it; Formspree drops submissions that do. -->
+        <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-primary pressable js-notify-submit" type="submit">Get launch and update emails</button>
+      </div>
+      <p class="notify-status js-notify-status" id="notify-status" role="status" aria-live="polite"></p>
+      <p class="notify-note" id="notify-note">We'll email you when Headroom is on the App Store and when there's a new update. Every email has a way to unsubscribe, and your address is used for nothing else. The form is handled by Formspree. Questions: <a href="mailto:george@vogas.net">george@vogas.net</a>.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="disclaimer">Safe to spend is an estimate based on what you enter. It isn't your bank balance and it can't guarantee a purchase will go through.</p>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <p class="made">Made in Canada · CAD</p>
+  </div>
+</footer>
+
+<div class="banner page-banner js-page-banner" role="status" aria-live="polite"></div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
