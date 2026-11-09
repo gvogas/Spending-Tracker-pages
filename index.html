@@ -217,264 +217,47 @@
   </div>
 </section>
 
-<!-- 4. Calculator -->
-<section class="section" id="ask" aria-labelledby="ask-title">
-  <div class="wrap ask-grid">
-    <div>
-      <p class="eyebrow">Plan</p>
-      <h2 id="ask-title">Can I spend this before payday?</h2>
-      <p class="lede">Type any amount. The app recalculates with your balance lowered by that much, so bills and set-asides are always protected. You get the answer in a sentence.</p>
-      <p class="small-note">Sample figures: $285.00 safe to spend, 8 days to payday.</p>
-    </div>
-    <form class="card ask-card" id="ask-form" novalidate>
-      <label class="ask-label" for="ask-amount">Can I spend this before payday?</label>
-      <div class="field">
-        <span class="field-symbol" aria-hidden="true">$</span>
-        <input id="ask-amount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Amount" value="120" aria-describedby="ask-answer">
-      </div>
-      <div class="chips" role="group" aria-label="Quick amounts">
-        <button type="button" class="chip pressable" data-amount="20">$20</button>
-        <button type="button" class="chip pressable" data-amount="50">$50</button>
-        <button type="button" class="chip pressable is-on" data-amount="120" aria-pressed="true">$120</button>
-        <button type="button" class="chip pressable" data-amount="250">$250</button>
-      </div>
-      <div class="answer" id="ask-answer" aria-live="polite">
-        <svg class="answer-icon yes" aria-hidden="true"><use href="#i-check"/></svg>
-        <p><strong class="verdict">Yes.</strong> <span class="detail">You would still have <b class="money" data-minor="16500">$165.00</b> to spend, about <b class="money" data-minor="2063">$20.63</b> a day until payday.</span></p>
-      </div>
-    </form>
-  </div>
-</section>
-
-<!-- 5. Momentum + Insights -->
-<section class="section" id="insights" aria-labelledby="insights-title">
+<!-- 4. Everything else, at a glance -->
+<section class="section" id="features" aria-labelledby="features-title">
   <div class="wrap">
-    <p class="eyebrow">Insights</p>
-    <h2 id="insights-title">See the shape of your week, without being nagged.</h2>
-    <p class="lede">Everyday spending only, so paying a bill never breaks a run. An over day says "Tomorrow starts fresh." and nothing more.</p>
-    <div class="insight-grid">
-
-      <section class="card momentum" data-animate="momentum" aria-label="Momentum: 4 days in a row under your allowance. Last 7 days $116.23 of $249.41, $133.18 under.">
-        <div class="card-head"><h3>4 days in a row under your allowance</h3><svg class="spark" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
-        <div class="dots" aria-hidden="true">
-          <span class="day" style="--i:0"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>T</small></span>
-          <span class="day" style="--i:1"><span class="dot-wrap quiet"><svg><use href="#i-minus"/></svg></span><small>W</small></span>
-          <span class="day" style="--i:2"><span class="dot-wrap over"><svg><use href="#i-up"/></svg></span><small>T</small></span>
-          <span class="day" style="--i:3"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>F</small></span>
-          <span class="day" style="--i:4"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>S</small></span>
-          <span class="day" style="--i:5"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>S</small></span>
-          <span class="day today" style="--i:6"><span class="dot-wrap under"><svg><use href="#i-check"/></svg></span><small>M</small></span>
-        </div>
-        <div class="meter" aria-hidden="true"><span style="--f:46.6%"></span></div>
-        <p class="card-foot">Last 7 days $116.23 of $249.41 · $133.18 under</p>
-      </section>
-
-      <section class="card daily-card" data-animate="bars" aria-label="Everyday spending, last 14 days: 2 days over today's allowance of $35.63, about $19.13 a day on average.">
-        <div class="card-head"><h3>Everyday spending</h3><span class="card-sub">Last 14 days, without bills</span></div>
-        <div class="bars" aria-hidden="true" style="--max:46.1">
-          <span class="rule" style="--y:35.63"></span>
-          <span class="bar" style="--v:12.4"><i></i><small>20</small></span>
-          <span class="bar" style="--v:28.75"><i></i><small>21</small></span>
-          <span class="bar over" style="--v:46.1"><i></i><small>22</small></span>
-          <span class="bar" style="--v:9.9"><i></i><small>23</small></span>
-          <span class="bar" style="--v:33.1"><i></i><small>24</small></span>
-          <span class="bar" style="--v:0"><i></i><small>25</small></span>
-          <span class="bar" style="--v:21.3"><i></i><small>26</small></span>
-          <span class="bar" style="--v:18.4"><i></i><small>27</small></span>
-          <span class="bar" style="--v:0"><i></i><small>28</small></span>
-          <span class="bar over" style="--v:41.2"><i></i><small>29</small></span>
-          <span class="bar" style="--v:12.75"><i></i><small>30</small></span>
-          <span class="bar" style="--v:24.6"><i></i><small>31</small></span>
-          <span class="bar" style="--v:14.53"><i></i><small>1</small></span>
-          <span class="bar today" style="--v:4.75"><i></i><small>2</small></span>
-        </div>
-        <p class="card-foot ink">Dashed line: today's allowance $35.63 · 2 days over · $19.13 a day on average</p>
-      </section>
-
-      <section class="card where" data-animate="ring" aria-label="Where it went, October: Groceries 47 percent, Coffee and food 21 percent, Transit 14 percent, Fun 11 percent, Other 7 percent. Total $452.45.">
-        <div class="card-head"><h3>Where it went</h3><span class="card-sub">October</span></div>
-        <div class="where-top">
-          <div class="ring-chart" aria-hidden="true">
-            <svg viewBox="0 0 100 100">
-              <circle class="arc c0" cx="50" cy="50" r="40" style="--len:46.9"/>
-              <circle class="arc c1" cx="50" cy="50" r="40" style="--len:21.2;--off:46.9"/>
-              <circle class="arc c2" cx="50" cy="50" r="40" style="--len:14.1;--off:68.1"/>
-              <circle class="arc c3" cx="50" cy="50" r="40" style="--len:10.8;--off:82.2"/>
-              <circle class="arc c4" cx="50" cy="50" r="40" style="--len:6.9;--off:93"/>
-            </svg>
-            <span class="ring-center"><small>Total</small><b class="money" data-minor="45245" data-from="0">$452.45</b></span>
-          </div>
-          <ul class="legend shares" aria-hidden="true">
-            <li><i class="dot c0"></i>Groceries<b>47%</b></li>
-            <li><i class="dot c1"></i>Coffee &amp; food<b>21%</b></li>
-            <li><i class="dot c2"></i>Transit<b>14%</b></li>
-            <li><i class="dot c3"></i>Fun<b>11%</b></li>
-            <li><i class="dot c4"></i>Other<b>7%</b></li>
-          </ul>
-        </div>
-        <ul class="rows" aria-hidden="true">
-          <li><span>Groceries<small>6 purchases · about $35.40 each</small></span><b>$212.40</b></li>
-          <li><span>Coffee &amp; food<small>11 purchases · about $8.74 each</small></span><b>$96.10</b></li>
-          <li><span>Transit<small>19 purchases · about $3.37 each</small></span><b>$64.00</b></li>
-          <li><span>Fun<small>3 purchases · about $16.25 each</small></span><b>$48.75</b></li>
-          <li><span>Other<small>2 purchases · about $15.60 each</small></span><b>$31.20</b></li>
-        </ul>
-      </section>
-
-      <section class="card cal-card" data-animate="calendar" aria-label="Day by day, October. Darker days are bigger everyday-spending days. The busiest day was Saturday, October 10, $51.20.">
-        <div class="card-head"><h3>Day by day</h3><span class="card-sub">October · everyday spending</span></div>
-        <div class="cal js-cal" aria-hidden="true"></div>
-        <p class="card-foot js-cal-foot">Darker days are bigger spending days. Tap a day for its total.</p>
-      </section>
-    </div>
-  </div>
-</section>
-
-<!-- 6. Log it in seconds -->
-<section class="section" id="log" aria-labelledby="log-title">
-  <div class="wrap log-grid">
-    <div class="log-copy">
-      <p class="eyebrow">Add transaction</p>
-      <h2 id="log-title">Log it in seconds.</h2>
-      <p class="lede">Your usual comes first: the things you've logged more than once lately. Tap one, change anything, save. Before you do, the sheet tells you what safe to spend would become.</p>
-      <ul class="feature-list">
-        <li><b>Live preview.</b> "Safe to spend would be $260.00 ($32.50 a day)", or a plain warning if it would leave you short.</li>
-        <li><b>Log again, undo.</b> Swipe a past transaction to log it again today. Deleted or logged by mistake? Undo for five seconds, or restore from Recently deleted within 30 days.</li>
-        <li><b>Siri and Shortcuts.</b> "Log an expense in Headroom" works with no setup.</li>
-        <li><b>On your wrist.</b> The Apple Watch app and complications show safe to spend and what's left today.</li>
-        <li><b>Receipts.</b> Type them in, or scan a photo with Pro. Read on the device, never uploaded.</li>
-      </ul>
-    </div>
-    <div class="hero-device">
-      <div class="phone" id="add-phone" role="group" aria-label="Interactive preview of the Add transaction sheet">
-        <div class="screen">
-          <div class="island" aria-hidden="true"></div>
-          <div class="status" aria-hidden="true"><span>9:41</span><span class="status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
-          <div class="behind js-behind" aria-hidden="true"></div>
-          <div class="sheet js-sheet">
-            <span class="grabber" aria-hidden="true"></span>
-            <div class="sheet-bar"><span class="sheet-cancel">Cancel</span><b>Add transaction</b><span></span></div>
-            <div class="sheet-body">
-              <div class="segmented" role="radiogroup" aria-label="Kind"><span class="on" role="radio" aria-checked="true">Expense</span><span role="radio" aria-checked="false">Income</span><span role="radio" aria-checked="false">Refund</span></div>
-              <p class="sheet-eyebrow">Your usual</p>
-              <div class="picks" role="group" aria-label="Your usual">
-                <button type="button" class="pick pressable js-pick" data-minor="1250" data-note="Burrito" data-cat="Coffee &amp; food"><svg aria-hidden="true"><use href="#i-fork"/></svg><span>Burrito<small>$12.50</small></span></button>
-                <button type="button" class="pick pressable js-pick" data-minor="2500" data-note="No Frills" data-cat="Groceries"><svg aria-hidden="true"><use href="#i-cart"/></svg><span>No Frills<small>$25.00</small></span></button>
-                <button type="button" class="pick pressable js-pick" data-minor="335" data-note="Presto" data-cat="Transit"><svg aria-hidden="true"><use href="#i-tram"/></svg><span>Presto<small>$3.35</small></span></button>
-                <button type="button" class="pick pressable js-pick" data-minor="475" data-note="Coffee" data-cat="Coffee &amp; food"><svg aria-hidden="true"><use href="#i-cup"/></svg><span>Coffee<small>$4.75</small></span></button>
-              </div>
-              <p class="sheet-foot">Things you've logged more than once lately. Tap one, then change anything before saving.</p>
-              <p class="sheet-eyebrow">Amount</p>
-              <div class="sheet-card">
-                <div class="amount-field js-amount-field"><span class="sym">$</span><span class="amount js-amount placeholder">0.00</span></div>
-                <p class="preview js-preview"><svg aria-hidden="true"><use href="#i-info"/></svg><span>Safe to spend would be <b class="money" data-minor="28500">$285.00</b> (<b class="money" data-minor="3563">$35.63</b> a day)</span></p>
-              </div>
-              <p class="sheet-eyebrow">Category</p>
-              <div class="cats js-cats"><span data-cat="Groceries">Groceries</span><span data-cat="Coffee &amp; food">Coffee &amp; food</span><span data-cat="Transit">Transit</span><span data-cat="Fun">Fun</span></div>
-              <div class="sheet-card note-row"><span class="js-note placeholder">Note (optional), e.g. Lunch with Sam</span><span class="note-date">Today</span></div>
-            </div>
-            <button type="button" class="save pressable js-save" disabled>Save</button>
-          </div>
-          <div class="banner js-banner" role="status" aria-live="polite"></div>
-        </div>
-      </div>
-      <p class="device-hint">Tap a chip, then <em>Save</em>. <button type="button" class="link-btn js-add-replay">Replay</button></p>
-    </div>
-  </div>
-</section>
-
-<!-- 7. Private by design -->
-<section class="section" id="privacy" aria-labelledby="privacy-title" data-animate="privacy">
-  <div class="wrap">
-    <p class="eyebrow">Private by design</p>
-    <h2 id="privacy-title">Your money stays your business.</h2>
-    <p class="lede">The app makes no network requests apart from the App Store purchase. There's no account to create, so there's nothing on a server to leak.</p>
+    <p class="eyebrow">What else it does</p>
+    <h2 id="features-title">Small, quick, and private.</h2>
     <div class="privacy-grid">
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-person-slash"/></svg><h3>No account</h3><p>Open the app and enter a balance. That's the whole setup.</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-bank-slash"/></svg><h3>No bank login</h3><p>Check against your bank by typing in what it shows. The app never connects.</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-pulse-slash"/></svg><h3>No analytics</h3><p>Apple's privacy label for the app reads Data Not Collected. It contains no tracking or crash-reporting code.</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-faceid"/></svg><h3>Face ID lock</h3><p>Lock the app, and the figures stay off the widget and Siri until you unlock.</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-shield"/></svg><h3>Encrypted backup</h3><p>A backup file encrypted with a passphrase you choose, made by hand or automatically every week into a Files folder you pick.</p></div>
-      <div class="card p-item p-hide">
-        <div class="p-hide-head">
-          <svg aria-hidden="true"><use href="#i-eye-slash"/></svg>
-          <h3>Hide amounts</h3>
-          <button type="button" class="switch js-mask-switch" role="switch" aria-checked="false" aria-label="Hide amounts in this preview"><span class="knob"></span></button>
-        </div>
-        <p>One tap masks every figure in the app and on the widget as <code>$•••</code>, for when someone is looking over your shoulder.</p>
-        <div class="widget themed" data-theme="navy" aria-hidden="true">
-          <span class="eyebrow on-hero">Safe to spend</span>
-          <b class="amt w-fig" data-amt="$285.00">$285.00</b>
-          <span class="w-sub"><span class="amt" data-amt="$35.63">$35.63</span> a day · 8 days</span>
-        </div>
-      </div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-plus"/></svg><h3>Log it in seconds</h3><p>Your usual purchases come first. Tap, save, and see what safe to spend becomes before you do.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-sparkles"/></svg><h3>Insights, no nagging</h3><p>Streaks, where it went, and day by day. An over day just says "Tomorrow starts fresh."</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-bank-slash"/></svg><h3>No account, no bank login</h3><p>No tracking or crash-reporting code. Apple's privacy label reads Data Not Collected.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-faceid"/></svg><h3>Locked and backed up</h3><p>Face ID lock, hide amounts with one tap, and encrypted backups to a Files folder you pick.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 8. Free vs Pro -->
+<!-- 5. Free vs Pro -->
 <section class="section" id="pro" aria-labelledby="pro-title">
   <div class="wrap">
     <p class="eyebrow">Free and Pro</p>
     <h2 id="pro-title">Pay once, if you want more.</h2>
-    <p class="lede pro-rule"><b>Anything that protects you or keeps the figure accurate is free.</b> Pro adds history, customization and convenience for one payment. No subscription.</p>
-    <div class="table-wrap">
-      <table class="compare">
-        <thead><tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Free</th><th scope="col" class="pro-col">Pro · CAD 9.99 once</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Safe to spend, daily allowance, bills, shortfall warnings</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">Transactions, bank check, Undo and Recently deleted</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">App lock and encrypted backup, weekly automatic backup to Files</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">Reminders</th><td data-col="Free">Bill reminders, and a nudge on days nothing was logged</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">Split a receipt across categories</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">Hide amounts</th><td data-col="Free">Included</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">Apple Watch</th><td data-col="Free">Safe to spend and today's amount on your wrist, with complications</td><td data-col="Pro">Included</td></tr>
-          <tr><th scope="row">History</th><td data-col="Free">This month and last</td><td data-col="Pro">Any month from the last year (categories and day by day), 12-month trends with plain-language notes</td></tr>
-          <tr><th scope="row">Savings goals</th><td data-col="Free">Up to 2</td><td data-col="Pro">Unlimited, with a projection: "At this rate you reach Laptop on Mar 12."</td></tr>
-          <tr><th scope="row">Categories</th><td data-col="Free">Built-in set</td><td data-col="Pro">Create, rename and merge</td></tr>
-          <tr><th scope="row">Receipts</th><td data-col="Free">Type them in</td><td data-col="Pro">Scan a photo to fill in the total, date and shop; keep the photo with the transaction (opt-in, on device)</td></tr>
-          <tr><th scope="row">Home Screen widgets</th><td data-col="Free">Small (safe to spend)</td><td data-col="Pro">Medium and Lock Screen widgets, a Log my usual button that logs without opening the app, and a Live Activity for trips</td></tr>
-          <tr><th scope="row">Exports</th><td data-col="Free">Not included</td><td data-col="Pro">Every transaction as a spreadsheet (CSV), monthly and year-end PDF summaries, and a read-only month to share with a partner or parent</td></tr>
-          <tr><th scope="row">Paydays</th><td data-col="Free">Safe to spend starts over each payday</td><td data-col="Pro">A review of each pay period, a note on payday morning, and automatic set-asides each payday</td></tr>
-          <tr><th scope="row">Trips</th><td data-col="Free">Not included</td><td data-col="Pro">Set money aside for a trip; while you're away, Home leads with what's left for the trip and per day</td></tr>
-          <tr><th scope="row">Looking ahead</th><td data-col="Free">Bills before payday</td><td data-col="Pro">Bill forecast: twelve months of bills, yearly ones as spikes, the expensive month named</td></tr>
-          <tr><th scope="row">Looking back</th><td data-col="Free">Not included</td><td data-col="Pro">Monthly report card in four lines, shareable as an image</td></tr>
-          <tr><th scope="row">Look and feel</th><td data-col="Free">Navy</td><td data-col="Pro">Six accent palettes (navy, teal, indigo, plum, forest, graphite) with matching app icons</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small-note">Paid once through the App Store. If a purchase is refunded, Pro turns off and your data stays yours: nothing you entered is lost or hidden.</p>
-  </div>
-</section>
-
-<!-- 9. Pro themes -->
-<section class="section" id="themes" aria-labelledby="themes-title" data-animate="themes">
-  <div class="wrap themes-grid">
-    <div>
-      <p class="eyebrow">Pro themes</p>
-      <h2 id="themes-title">Six palettes, one calm look.</h2>
-      <p class="lede">The accent, the soft tints and the hero surface follow your choice everywhere in the app, and the app icon changes to match. Hover or tap a swatch to try one on the Home mockup.</p>
-      <div class="swatches" role="group" aria-label="Pro themes">
-        <button type="button" class="swatch pressable is-on" data-theme="navy" aria-pressed="true"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Navy</span></button>
-        <button type="button" class="swatch pressable" data-theme="teal" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Teal</span></button>
-        <button type="button" class="swatch pressable" data-theme="indigo" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Indigo</span></button>
-        <button type="button" class="swatch pressable" data-theme="plum" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Plum</span></button>
-        <button type="button" class="swatch pressable" data-theme="forest" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Forest</span></button>
-        <button type="button" class="swatch pressable" data-theme="graphite" aria-pressed="false"><i aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="27"/><circle class="seg-ring" cx="50" cy="50" r="27" stroke-dasharray="57 113" transform="rotate(30 50 50)"/></svg></i><span>Graphite</span></button>
+    <p class="lede pro-rule"><b>Anything that protects you or keeps the figure accurate is free.</b> No subscription.</p>
+    <div class="plans">
+      <div class="card plan">
+        <h3>Free</h3>
+        <ul>
+          <li>Safe to spend, daily allowance, bills and shortfall warnings</li>
+          <li>Transactions, undo and Recently deleted</li>
+          <li>App lock, hide amounts, encrypted backup</li>
+          <li>Bill reminders, a small widget and Apple Watch</li>
+          <li>This month and last, up to 2 savings goals</li>
+        </ul>
       </div>
-    </div>
-    <div class="theme-preview themed" data-theme="navy" aria-hidden="true">
-      <section class="hero-card">
-        <div class="hero-top"><span class="eyebrow on-hero">Safe to spend</span><span class="stamp">Payday in 8 days</span></div>
-        <p class="money money-hero"><span class="whole">$285</span><span class="cents">.00</span></p>
-        <p class="until">until payday Tue, Nov 10 · 8 days</p>
-        <span class="hero-link">Where's the rest of my $850.00?<svg class="chev"><use href="#i-chevron"/></svg></span>
-      </section>
-      <div class="tiles">
-        <section class="card tile"><span class="ring is-in" style="--f:0.133"><svg viewBox="0 0 56 56"><circle class="track" cx="28" cy="28" r="24"/><circle class="fill" cx="28" cy="28" r="24"/></svg><svg class="ring-glyph"><use href="#i-check"/></svg></span><span class="tile-text"><span class="eyebrow">Today</span><b class="tile-figure">$30.88 left</b><span class="tile-sub">of $35.63 · $4.75 spent</span></span></section>
-        <section class="card tile"><span class="tile-icon"><svg><use href="#i-calendar"/></svg></span><span class="tile-text"><span class="eyebrow">Payday</span><b class="tile-figure">8 days</b><span class="tile-sub">Tue, Nov 10</span></span></section>
+      <div class="card plan plan-pro">
+        <h3>Pro <span>CAD 9.99 once</span></h3>
+        <ul>
+          <li>A year of history and 12-month trends</li>
+          <li>Unlimited goals, custom categories, receipt scanning</li>
+          <li>Medium and Lock Screen widgets, Live Activity for trips</li>
+          <li>CSV and PDF exports, payday review, bill forecast</li>
+          <li>Six colour palettes with matching app icons</li>
+        </ul>
       </div>
-      <div class="chips preview-chips"><span class="chip is-on">$120</span><span class="chip">$250</span><span class="chip">Groceries</span></div>
     </div>
   </div>
 </section>

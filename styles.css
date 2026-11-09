@@ -108,8 +108,8 @@ svg { display: inline-block; vertical-align: middle; fill: none; stroke: current
 .lede { font-size: 18px; color: var(--text-2); max-width: 58ch; margin-top: 14px; }
 .small-note { font-size: 14px; color: var(--text-2); margin-top: 16px; max-width: 70ch; }
 .section > .wrap > .eyebrow + h2 { margin-top: 8px; }
-.section { padding: 72px 0; }
-@media (min-width: 900px) { .section { padding: 104px 0; } }
+.section { padding: 48px 0; }
+@media (min-width: 900px) { .section { padding: 64px 0; } }
 .money { white-space: nowrap; }
 .pressable { transition: transform var(--snappy), opacity var(--snappy); }
 .pressable:active { transform: scale(.97); opacity: .8; }
@@ -428,6 +428,18 @@ svg { display: inline-block; vertical-align: middle; fill: none; stroke: current
 /* Section 8: table */
 .lede.pro-rule { color: var(--text); }
 .lede.pro-rule b { font-weight: 600; }
+#features .privacy-grid { margin-top: 28px; }
+@media (min-width: 980px) { #features .privacy-grid { grid-template-columns: repeat(4, 1fr); } }
+.plans { display: grid; gap: 14px; margin-top: 28px; }
+@media (min-width: 760px) { .plans { grid-template-columns: 1fr 1fr; gap: 18px; } }
+.plan { padding: 24px; }
+.plan h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.plan h3 span { font-size: 14px; font-weight: 600; color: var(--accent); }
+.plan ul { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-direction: column; gap: 10px; color: var(--text-2); font-size: 15px; }
+.plan li { padding-left: 22px; position: relative; }
+.plan li::before { content: ""; position: absolute; left: 2px; top: .45em; width: 10px; height: 6px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+.plan-pro { border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline)); }
+#video .video-frame { max-width: 860px; }
 .table-wrap { margin-top: 32px; background: var(--card); border: 1px solid var(--hairline); border-radius: var(--radius-card); overflow: hidden; }
 .compare { width: 100%; border-collapse: collapse; font-size: 15px; }
 .compare th, .compare td { text-align: left; vertical-align: top; padding: 14px 18px; border-bottom: 1px solid var(--hairline); }
