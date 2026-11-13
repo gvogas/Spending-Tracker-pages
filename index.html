@@ -67,7 +67,7 @@
     </a>
     <button type="button" class="store-badge pressable" id="store-badge">
       <svg aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
-      <span class="store-badge-text"><small>Coming soon</small>to the App Store</span>
+      <span class="store-badge-text"><small>Coming soon to iPhone</small>Get told at launch</span>
     </button>
   </div>
 </header>
@@ -78,13 +78,30 @@
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">For iPhone · English and French (Canada)</p>
+      <p class="eyebrow">Coming soon to iPhone · Canada · English and French</p>
       <h1 id="hero-title">Can I spend $120 before Friday?</h1>
       <p class="lede">Enter your balance, your payday and your bills. Headroom shows what's safe to spend until payday, and how much that is a day.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary pressable" href="#how">See how the number works</a>
-        <a class="btn btn-quiet pressable" href="#video">Watch the tour</a>
-      </div>
+      <form class="notify notify-hero js-notify" id="notify-hero" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Headroom email list">
+        <input type="hidden" name="list" value="launch and updates">
+        <input type="hidden" name="placement" value="hero">
+        <input type="hidden" name="ref" value="">
+        <div class="notify-row">
+          <label class="visually-hidden" for="notify-email-hero">Email address</label>
+          <input class="notify-input js-notify-email" id="notify-email-hero" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" aria-describedby="notify-status-hero notify-note-hero">
+          <!-- Honeypot: people never see or fill it; Formspree drops submissions that do. -->
+          <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary pressable js-notify-submit" type="submit">Email me at launch</button>
+        </div>
+        <fieldset class="notify-phone">
+          <legend>My phone (optional)</legend>
+          <label><input type="radio" name="phone" value="iPhone"><span>iPhone</span></label>
+          <label><input type="radio" name="phone" value="Android"><span>Android</span></label>
+        </fieldset>
+        <p class="notify-status js-notify-status" id="notify-status-hero" role="status" aria-live="polite"></p>
+        <p class="notify-note" id="notify-note-hero">One email when Headroom is on the App Store, then one when there's an update. Unsubscribe any time. <a href="privacy.html#email-list">What we keep</a>.</p>
+      </form>
+      <p class="hero-links"><a href="#try">Try it with your numbers</a><a href="#video">Watch the 50-second tour</a></p>
       <ul class="hero-points" aria-label="Highlights">
         <li>Free, with a one-time Pro upgrade</li>
         <li>Works without an account or bank login</li>
@@ -217,7 +234,32 @@
   </div>
 </section>
 
-<!-- 4. Everything else, at a glance -->
+<!-- 4. Try it -->
+<section class="section" id="try" aria-labelledby="try-title">
+  <div class="wrap ask-grid">
+    <div>
+      <p class="eyebrow">Try it</p>
+      <h2 id="try-title">Put in your own numbers.</h2>
+      <p class="lede">Four figures from your banking app are enough. This is the same sum the app keeps up to date as you log purchases and pay bills.</p>
+      <p class="small-note">Nothing you type here is saved or sent anywhere. It's worked out on this page.</p>
+    </div>
+    <form class="card ask-card" id="try-form" novalidate>
+      <div class="try-fields">
+        <label class="try-field"><span>Balance today</span><span class="field"><span class="field-symbol" aria-hidden="true">$</span><input name="balance" type="text" inputmode="decimal" autocomplete="off" value="850"></span></label>
+        <label class="try-field"><span>Bills due before payday</span><span class="field"><span class="field-symbol" aria-hidden="true">$</span><input name="bills" type="text" inputmode="decimal" autocomplete="off" value="300"></span></label>
+        <label class="try-field"><span>Set aside (savings, rent fund)</span><span class="field"><span class="field-symbol" aria-hidden="true">$</span><input name="aside" type="text" inputmode="decimal" autocomplete="off" value="265"></span></label>
+        <label class="try-field"><span>Days until payday</span><span class="field"><input name="days" type="text" inputmode="numeric" autocomplete="off" value="8"></span></label>
+      </div>
+      <div class="answer try-answer" id="try-answer" role="status" aria-live="polite">
+        <svg class="answer-icon" aria-hidden="true"><use href="#i-check"/></svg>
+        <p><strong class="verdict">$285.00 safe to spend.</strong> <span class="detail">That's $35.63 a day for 8 days.</span></p>
+      </div>
+      <a class="btn btn-primary pressable js-try-cta" href="#notify-closing">Get this on my iPhone</a>
+    </form>
+  </div>
+</section>
+
+<!-- 5. Everything else, at a glance -->
 <section class="section" id="features" aria-labelledby="features-title">
   <div class="wrap">
     <p class="eyebrow">What else it does</p>
@@ -272,7 +314,7 @@
         <source src="assets/promo.mp4" type="video/mp4">
         <a class="video-fallback" href="assets/promo.mp4"><img src="assets/promo-poster.jpg" alt=""><span>Watch the video</span></a>
       </video>
-      <figcaption>From a balance and a payday to one number, with the sample figures used on this page. Also as a <a href="assets/promo-vertical.mp4">vertical version</a> for phones, a 30-second cut (<a href="assets/promo-30s.mp4">landscape</a>, <a href="assets/promo-30s-vertical.mp4">vertical</a>) and a 10-second one (<a href="assets/promo-10s.mp4">landscape</a>, <a href="assets/promo-10s-vertical.mp4">vertical</a>).</figcaption>
+      <figcaption>From a balance and a payday to one number, with the sample figures used on this page.</figcaption>
     </figure>
   </div>
 </section>
@@ -299,18 +341,25 @@
     <h2 id="closing-title">Know what you can actually afford.</h2>
     <p class="lede">Free on iPhone. Pro once for CAD 9.99. Coming soon to the App Store.</p>
     <!-- Without JavaScript this posts normally and Formspree shows its own thank-you page. -->
-    <form class="notify js-notify" id="notify" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
+    <form class="notify js-notify" id="notify-closing" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
       <input type="hidden" name="_subject" value="Headroom email list">
       <input type="hidden" name="list" value="launch and updates">
+      <input type="hidden" name="placement" value="closing">
+      <input type="hidden" name="ref" value="">
       <div class="notify-row">
-        <label class="visually-hidden" for="notify-email">Email address</label>
-        <input class="notify-input" id="notify-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" aria-describedby="notify-status notify-note">
+        <label class="visually-hidden" for="notify-email-closing">Email address</label>
+        <input class="notify-input js-notify-email" id="notify-email-closing" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" aria-describedby="notify-status-closing notify-note-closing">
         <!-- Honeypot: people never see or fill it; Formspree drops submissions that do. -->
         <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn-primary pressable js-notify-submit" type="submit">Get launch and update emails</button>
+        <button class="btn btn-primary pressable js-notify-submit" type="submit">Email me at launch</button>
       </div>
-      <p class="notify-status js-notify-status" id="notify-status" role="status" aria-live="polite"></p>
-      <p class="notify-note" id="notify-note">We'll email you when Headroom is on the App Store and when there's a new update. Every email has a way to unsubscribe, and your address is used for nothing else. The form is handled by Formspree. Questions: <a href="mailto:george@vogas.net">george@vogas.net</a>.</p>
+      <fieldset class="notify-phone">
+        <legend>My phone (optional)</legend>
+        <label><input type="radio" name="phone" value="iPhone"><span>iPhone</span></label>
+        <label><input type="radio" name="phone" value="Android"><span>Android</span></label>
+      </fieldset>
+      <p class="notify-status js-notify-status" id="notify-status-closing" role="status" aria-live="polite"></p>
+      <p class="notify-note" id="notify-note-closing">We'll email you when Headroom is on the App Store and when there's a new update. Every email has a way to unsubscribe, and your address is used for nothing else. The form is handled by Formspree; <a href="privacy.html#email-list">what we keep</a>. Questions: <a href="mailto:george@vogas.net">george@vogas.net</a>.</p>
     </form>
   </div>
 </section>

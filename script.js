@@ -202,48 +202,43 @@
   };
   $$('[data-animate]').forEach(el => { if (el.dataset.animate !== 'hero') io.observe(el); });
 
-  // ---------- Calculator ----------
-  const form = $('#ask-form');
-  if (form) {
-    const input = $('#ask-amount');
-    const answer = $('#ask-answer');
-    const icon = $('.answer-icon', answer);
+  // ---------- Try it: the app's sum on the visitor's own figures. Nothing here is stored or sent. ----------
+  const tryForm = $('#try-form');
+  if (tryForm) {
+    const answer = $('#try-answer');
+    const icon = $('use', answer);
     const text = $('p', answer);
-    const chips = $$('.chip', form);
-    let mode = 'yes';
-    const parse = s => { const n = Number(String(s).replace(/[$,\s]/g, '')); return Number.isFinite(n) ? Math.round(n * 100) : NaN; };
-
+    // "1,200.50", "1 200,50" (fr-CA) and "$850" all parse; anything else counts as empty.
+    const parse = raw => {
+      let s = String(raw).replace(/[^0-9.,-]/g, '');
+      if (/,\d{1,2}$/.test(s) && !s.includes('.')) s = s.replace(',', '.');
+      const n = Number(s.replace(/,/g, ''));
+      return s !== '' && Number.isFinite(n) && n >= 0 ? Math.round(n * 100) : NaN;
+    };
     const render = () => {
-      const amount = parse(input.value);
-      chips.forEach(c => { const on = Number(c.dataset.amount) * 100 === amount; c.classList.toggle('is-on', on); c.setAttribute('aria-pressed', String(on)); });
-      if (!(amount > 0)) {
-        mode = 'empty'; answer.className = 'answer is-empty';
-        text.innerHTML = `<span class="detail">Enter an amount to check it against your ${fmt(SAFE)} safe to spend.</span>`;
+      const f = tryForm.elements;
+      const balance = parse(f.balance.value), bills = parse(f.bills.value || '0'), aside = parse(f.aside.value || '0');
+      const days = Math.max(1, Math.min(62, Math.floor(Number(f.days.value)) || 1));
+      if ([balance, bills, aside].some(Number.isNaN)) {
+        answer.className = 'answer try-answer is-empty';
+        icon.setAttribute('href', '#i-info');
+        text.innerHTML = '<span class="detail">Enter your balance to see what\'s safe to spend.</span>';
         return;
       }
-      const after = SAFE - amount;
-      if (after >= 0) {
-        if (mode !== 'yes') {
-          answer.className = 'answer';
-          $('use', icon).setAttribute('href', '#i-check');
-          text.innerHTML = `<strong class="verdict">Yes.</strong> <span class="detail">You would still have <b class="money" data-minor="0">$0.00</b> to spend, about <b class="money" data-minor="0">$0.00</b> a day until payday.</span>`;
-        }
-        mode = 'yes';
-        const [a, b] = $$('.money', text);
-        roll(a, after); roll(b, perDay(after));
+      const safe = balance - bills - aside;
+      if (safe >= 0) {
+        answer.className = 'answer try-answer';
+        icon.setAttribute('href', '#i-check');
+        text.innerHTML = `<strong class="verdict">${fmt(safe)} safe to spend.</strong> <span class="detail">That's ${fmt(Math.round(safe / days))} a day for ${days} ${days === 1 ? 'day' : 'days'}.</span>`;
       } else {
-        if (mode !== 'no') {
-          answer.className = 'answer is-no';
-          $('use', icon).setAttribute('href', '#i-alert');
-          text.innerHTML = `<strong class="verdict">Not without touching bill or set-aside money.</strong> <span class="detail">You would be <b class="money" data-minor="0">$0.00</b> short.</span>`;
-        }
-        mode = 'no';
-        roll($('.money', text), -after);
+        answer.className = 'answer try-answer is-no';
+        icon.setAttribute('href', '#i-alert');
+        text.innerHTML = `<strong class="verdict">${fmt(-safe)} short before payday.</strong> <span class="detail">Bills and set-asides come to more than the balance. The app shows this as a shortfall, never as a negative amount to spend.</span>`;
       }
     };
-    input.addEventListener('input', render);
-    form.addEventListener('submit', e => { e.preventDefault(); render(); });
-    chips.forEach(c => c.addEventListener('click', () => { input.value = c.dataset.amount; render(); }));
+    tryForm.addEventListener('input', render);
+    tryForm.addEventListener('submit', e => e.preventDefault());
+    render();
   }
 
   // ---------- Insights: calendar + ring total ----------
@@ -384,13 +379,22 @@
   }
 
   // ---------- Launch list (Formspree, plain fetch: no third-party script) ----------
-  const notify = $('.js-notify');
-  if (notify) {
-    const email = $('#notify-email', notify);
+  // Each form says where on the page it is ("placement") and carries the ?ref= tag of the
+  // link that brought the visitor, so sign-ups can be counted per ad without any analytics.
+  const forms = $$('.js-notify');
+  const refTag = (() => {
+    const q = new URLSearchParams(location.search);
+    return (q.get('ref') || q.get('utm_source') || '').replace(/[^\w.-]/g, '').slice(0, 40);
+  })();
+  const LABEL = 'Email me at launch';
+  const THANKS = 'Thanks. We\'ll email you when Headroom is on the App Store and when there\'s a new update.';
+  forms.forEach(notify => {
+    const email = $('.js-notify-email', notify);
     const submit = $('.js-notify-submit', notify);
     const status = $('.js-notify-status', notify);
     const say = (text, kind) => { status.textContent = text; status.className = `notify-status js-notify-status ${kind ? 'is-' + kind : ''}`; };
     const invalid = on => email.setAttribute('aria-invalid', String(on));
+    notify.elements.ref.value = refTag;
 
     email.addEventListener('input', () => { if (email.getAttribute('aria-invalid') === 'true' && email.validity.valid) { invalid(false); say(''); } });
 
@@ -407,8 +411,13 @@
       try {
         const res = await fetch(notify.action, { method: 'POST', body: new FormData(notify), headers: { Accept: 'application/json' } });
         if (res.ok) {
-          notify.classList.add('is-done');
-          say('Thanks. We\'ll email you when Headroom is on the App Store and when there\'s a new update.', 'done');
+          // One sign-up is enough: every form on the page shows the thank-you.
+          forms.forEach(f => {
+            f.classList.add('is-done');
+            const st = $('.js-notify-status', f);
+            st.textContent = THANKS;
+            st.className = 'notify-status js-notify-status is-done';
+          });
           return;
         }
         const data = await res.json().catch(() => ({}));
@@ -420,16 +429,21 @@
       } catch {
         say('Couldn\'t send. Check your connection and try again.', 'error');
       } finally {
-        if (!notify.classList.contains('is-done')) { submit.disabled = false; submit.textContent = 'Get launch and update emails'; }
+        if (!notify.classList.contains('is-done')) { submit.disabled = false; submit.textContent = LABEL; }
       }
     });
+  });
 
-    // Store buttons: until the app is out, they take people to the list.
-    $$('.store-badge').forEach(b => b.addEventListener('click', () => {
-      notify.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'center' });
-      email.focus({ preventScroll: true });
-    }));
-  }
+  // Buttons that lead to a form: scroll to it, focus the email field, and record which button it was.
+  const goTo = (formEl, placement) => {
+    if (!formEl) return;
+    if (placement) formEl.elements.placement.value = placement;
+    formEl.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'center' });
+    $('.js-notify-email', formEl).focus({ preventScroll: true });
+  };
+  // Until the app is out, the store button takes people to the list.
+  $$('.store-badge').forEach(b => b.addEventListener('click', () => goTo($('#notify-hero'), 'nav')));
+  $$('.js-try-cta').forEach(a => a.addEventListener('click', e => { e.preventDefault(); goTo($('#notify-closing'), 'calculator'); }));
 
   // ---------- Promo video: if this browser can't play it, show the poster and a link ----------
   const promo = $('.js-promo');
