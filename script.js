@@ -13,13 +13,9 @@
 
   // Sample data (docs: marketing brief). Minor units throughout.
   const SAFE = 28500;
-  const DAYS = 8;
-  const BALANCE = 85000;
-  const SPOKEN_FOR = 30000 + 26500; // bills before payday + set aside
 
   const cad = new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' });
   const fmt = minor => cad.format(minor / 100);
-  const perDay = safeMinor => Math.round(safeMinor / DAYS); // half-up, as the app rounds for display
   const MASK = '$•••';
 
   const easeOut = t => 1 - Math.pow(1 - t, 3);
@@ -239,143 +235,6 @@
     tryForm.addEventListener('input', render);
     tryForm.addEventListener('submit', e => e.preventDefault());
     render();
-  }
-
-  // ---------- Insights: calendar + ring total ----------
-  const cal = $('.js-cal');
-  if (cal) {
-    const amounts = [14.10, 22.60, 38.30, 0, 9.20, 17.90, 11.45, 29.00, 24.75, 51.20, 8.30, 12.95, 19.40, 0, 23.85, 31.10, 42.60, 7.00, 16.70,
-      12.40, 28.75, 46.10, 9.90, 33.10, 0, 21.30, 18.40, 0, 41.20, 12.75, 24.60];
-    const busiest = Math.max(...amounts);
-    const offset = 3; // October 1, 2026 is a Thursday; Monday-first grid
-    const days = ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed'];
-    const frag = document.createDocumentFragment();
-    'MTWTFSS'.split('').forEach(l => { const s = document.createElement('span'); s.className = 'wd'; s.textContent = l; frag.appendChild(s); });
-    for (let i = 0; i < offset; i++) { const s = document.createElement('span'); s.className = 'cell blank'; frag.appendChild(s); }
-    const foot = $('.js-cal-foot');
-    const defaultFoot = foot.textContent;
-    let selected = null;
-    amounts.forEach((amt, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      const level = amt === 0 ? 0 : Math.max(1, Math.ceil(amt / busiest * 4));
-      b.className = `cell l${level}`;
-      b.style.setProperty('--i', i + offset);
-      b.textContent = i + 1;
-      const label = `${days[i % 7]}, Oct ${i + 1}`;
-      b.setAttribute('aria-label', `${label}: ${amt ? fmt(amt * 100) : 'nothing on everyday things'}`);
-      b.addEventListener('click', () => {
-        if (selected) selected.classList.remove('is-on');
-        if (selected === b) { selected = null; foot.textContent = defaultFoot; return; }
-        selected = b; b.classList.add('is-on');
-        foot.innerHTML = `<b>${label}</b>: ${amt ? fmt(amt * 100) : 'nothing on everyday things'}`;
-      });
-      frag.appendChild(b);
-    });
-    cal.appendChild(frag);
-    cal.removeAttribute('aria-hidden');
-  }
-  runners.ring = root => {
-    const total = $('.ring-center .money', root);
-    const target = Number(total.dataset.minor); total.dataset.minor = '0'; writeMoney(total, 0, false);
-    roll(total, target, { duration: 600, delay: 200, easing: easeOut });
-  };
-
-  // ---------- Add sheet mockup ----------
-  const addPhone = $('#add-phone');
-  if (addPhone && $('#home-screen')) {
-    const behind = $('.js-behind', addPhone);
-    const nav = $('#hero-phone .navbar').cloneNode(true);
-    const home = $('#home-screen').cloneNode(true);
-    [nav, home].forEach(n => { n.removeAttribute('id'); $$('[id]', n).forEach(e => e.removeAttribute('id')); $$('button', n).forEach(b => { b.tabIndex = -1; b.disabled = true; }); });
-    behind.append(nav, home);
-    behind.setAttribute('inert', '');
-    const bFigure = $('.js-hero-figure', home);
-    bFigure.dataset.minor = String(SAFE); writeMoney(bFigure, SAFE, false);
-    $('.ring', home).classList.add('is-in');
-
-    const sheet = $('.js-sheet', addPhone);
-    const amountEl = $('.js-amount', addPhone);
-    const amountField = $('.js-amount-field', addPhone);
-    const preview = $('.js-preview', addPhone);
-    const [pSafe, pDay] = $$('.money', preview);
-    const note = $('.js-note', addPhone);
-    const cats = $$('.js-cats span', addPhone);
-    const save = $('.js-save', addPhone);
-    const banner = $('.js-banner', addPhone);
-    let amount = 0;
-
-    const setPreview = () => {
-      const after = SAFE - amount;
-      roll(pSafe, after); roll(pDay, perDay(after));
-    };
-    $$('.js-pick', addPhone).forEach(pick => pick.addEventListener('click', () => {
-      $$('.js-pick', addPhone).forEach(p => p.classList.toggle('is-on', p === pick));
-      amount = Number(pick.dataset.minor);
-      amountEl.textContent = (amount / 100).toFixed(2);
-      amountEl.classList.remove('placeholder');
-      amountField.classList.remove('bump'); void amountField.offsetWidth; amountField.classList.add('bump');
-      note.textContent = pick.dataset.note; note.classList.remove('placeholder');
-      cats.forEach(c => c.classList.toggle('is-on', c.dataset.cat === pick.dataset.cat));
-      save.disabled = false;
-      setPreview();
-    }));
-    save.addEventListener('click', () => {
-      if (!amount) return;
-      sheet.classList.add('is-down');
-      addPhone.classList.add('is-saved');
-      const after = SAFE - amount;
-      setTimeout(() => {
-        roll(bFigure, after); swell(bFigure);
-        $('.js-today-left', home).textContent = `${fmt(3088 - amount)} left`;
-        showBanner(banner, `Added ${fmt(amount)}. Safe to spend is now ${fmt(after)}.`);
-      }, reduce() ? 0 : 350);
-    });
-    $('.js-add-replay').addEventListener('click', () => {
-      banner.classList.remove('is-shown');
-      addPhone.classList.remove('is-saved');
-      sheet.classList.remove('is-down');
-      amount = 0;
-      amountEl.textContent = '0.00'; amountEl.classList.add('placeholder');
-      note.textContent = 'Note (optional), e.g. Lunch with Sam'; note.classList.add('placeholder');
-      cats.forEach(c => c.classList.remove('is-on'));
-      $$('.js-pick', addPhone).forEach(p => p.classList.remove('is-on'));
-      save.disabled = true;
-      roll(pSafe, SAFE); roll(pDay, perDay(SAFE));
-      roll(bFigure, SAFE);
-      $('.js-today-left', home).textContent = '$30.88 left';
-    });
-  }
-
-  // ---------- Privacy: hide amounts ----------
-  const maskSwitch = $('.js-mask-switch');
-  if (maskSwitch) {
-    const widget = $('.widget');
-    const set = on => { maskSwitch.setAttribute('aria-checked', String(on)); setMasked(widget, on); };
-    maskSwitch.addEventListener('click', () => set(maskSwitch.getAttribute('aria-checked') !== 'true'));
-    runners.privacy = () => {
-      // One demonstration, then it's yours.
-      setTimeout(() => set(true), 900);
-      setTimeout(() => { if (!maskSwitch.matches(':hover, :focus')) set(false); }, 2600);
-    };
-  }
-
-  // ---------- Pro themes ----------
-  const swatches = $$('.swatch');
-  if (swatches.length) {
-    const targets = () => [$('#hero-phone'), $('.theme-preview')].filter(Boolean);
-    let chosen = 'navy';
-    const apply = name => targets().forEach(t => t.dataset.theme = name);
-    swatches.forEach(s => {
-      s.addEventListener('click', () => {
-        chosen = s.dataset.theme; apply(chosen);
-        swatches.forEach(o => { const on = o === s; o.classList.toggle('is-on', on); o.setAttribute('aria-pressed', String(on)); });
-      });
-      s.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') apply(s.dataset.theme); });
-      s.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') apply(chosen); });
-      s.addEventListener('focus', () => apply(s.dataset.theme));
-      s.addEventListener('blur', () => apply(chosen));
-    });
   }
 
   // ---------- Launch list (Formspree, plain fetch: no third-party script) ----------
