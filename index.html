@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Headroom: safe to spend until payday (iPhone, Canada)</title>
-<meta name="description" content="Headroom shows what's safe to spend until payday, after bills and savings. Private, offline, no bank login. Free on iPhone; Pro is a one-time CAD 9.99 purchase.">
+<meta name="description" content="Headroom shows what's safe to spend until payday, after bills and savings. Private, offline, no bank login. Coming soon to iPhone in Canada. Free, with a one-time CAD 9.99 Pro upgrade.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F2F4F7">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E1512">
@@ -67,7 +67,7 @@
     </a>
     <button type="button" class="store-badge pressable" id="store-badge">
       <svg aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
-      <span class="store-badge-text"><small>Coming soon to iPhone</small>Get told at launch</span>
+      <span class="store-badge-text"><small>Coming soon to iPhone</small>Email me at launch</span>
     </button>
   </div>
 </header>
@@ -80,7 +80,7 @@
     <div class="hero-copy">
       <p class="eyebrow">Coming soon to iPhone · Canada · English and French</p>
       <h1 id="hero-title">Can I spend $120 before Friday?</h1>
-      <p class="lede">Enter your balance, your payday and your bills. Headroom shows what's safe to spend until payday, and how much that is a day.</p>
+      <p class="lede">Your balance doesn't know the phone bill comes out Thursday. Headroom takes off the bills due before payday and what you've set aside, then shows what's left to spend, in total and per day.</p>
       <form class="notify notify-hero js-notify" id="notify-hero" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Headroom email list">
         <input type="hidden" name="list" value="launch and updates">
@@ -207,7 +207,7 @@
   <div class="wrap">
     <p class="eyebrow">How the number works</p>
     <h2 id="how-title">Your balance, minus bills and savings, divided by the days to payday.</h2>
-    <p class="lede">Safe to spend is your balance minus the bills due before payday and whatever you've set aside. Divided by the days left, it becomes a daily amount.</p>
+    <p class="lede">That's the whole calculation. Here it is with sample figures: $850 in the account and 8 days to payday.</p>
     <div class="formula card" data-animate="formula">
       <ol class="formula-rows" aria-label="Sample calculation">
         <li><span class="f-label">Balance</span><b class="money f-fig" data-minor="85000" data-from="0">$850.00</b></li>
@@ -254,7 +254,7 @@
         <svg class="answer-icon" aria-hidden="true"><use href="#i-check"/></svg>
         <p><strong class="verdict">$285.00 safe to spend.</strong> <span class="detail">That's $35.63 a day for 8 days.</span></p>
       </div>
-      <a class="btn btn-primary pressable js-try-cta" href="#notify-closing">Get this on my iPhone</a>
+      <a class="btn btn-primary pressable js-try-cta" href="#notify-closing">Email me when it's out</a>
     </form>
   </div>
 </section>
@@ -263,11 +263,11 @@
 <section class="section" id="features" aria-labelledby="features-title">
   <div class="wrap">
     <p class="eyebrow">What else it does</p>
-    <h2 id="features-title">Small, quick, and private.</h2>
+    <h2 id="features-title">Logging a purchase takes a few taps. Nothing leaves your phone.</h2>
     <div class="privacy-grid">
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-plus"/></svg><h3>Log it in seconds</h3><p>Your usual purchases come first. Tap, save, and see what safe to spend becomes before you do.</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-sparkles"/></svg><h3>Insights, no nagging</h3><p>Streaks, where it went, and day by day. An over day just says "Tomorrow starts fresh."</p></div>
-      <div class="card p-item"><svg aria-hidden="true"><use href="#i-bank-slash"/></svg><h3>No account, no bank login</h3><p>No tracking or crash-reporting code. Apple's privacy label reads Data Not Collected.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-plus"/></svg><h3>Log it in seconds</h3><p>Your usual purchases are at the top. Before you save, you see what safe to spend will become.</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-sparkles"/></svg><h3>See where it went</h3><p>Spending by category and by day, and how many days in a row you've stayed under your daily amount. Go over, and it says "Tomorrow starts fresh."</p></div>
+      <div class="card p-item"><svg aria-hidden="true"><use href="#i-bank-slash"/></svg><h3>No account, no bank login</h3><p>You type in your balance and bills yourself. The app has no tracking or crash-reporting code, and its App Store privacy label will read Data Not Collected.</p></div>
       <div class="card p-item"><svg aria-hidden="true"><use href="#i-faceid"/></svg><h3>Locked and backed up</h3><p>Face ID lock, hide amounts with one tap, and encrypted backups to a Files folder you pick.</p></div>
     </div>
   </div>
@@ -323,8 +323,11 @@
 <section class="section" id="faq" aria-labelledby="faq-title">
   <div class="wrap">
     <p class="eyebrow">Questions</p>
-    <h2 id="faq-title">Before you download</h2>
+    <h2 id="faq-title">Common questions</h2>
     <div class="faq">
+      <details class="card"><summary>When is it out?</summary><p>It's in testing now. People on the list hear first, and some will be invited to try it early.</p></details>
+      <details class="card"><summary>Why type things in instead of connecting my bank?</summary><p>So nothing about your money leaves your phone. Bills repeat on their own once you've added them, and most days there's only a purchase or two to log.</p></details>
+      <details class="card"><summary>Is there an Android version?</summary><p>Not yet. Pick Android on the sign-up form and we'll count it.</p></details>
       <details class="card"><summary>Is safe to spend my bank balance?</summary><p>No. It's an estimate from the balance, bills and set-asides you enter, so it's as current as what you've typed. Compare it with your bank now and then, and update the balance if they differ.</p></details>
       <details class="card"><summary>I don't get paid every two weeks. Does it still work?</summary><p>Yes. Pick weekly, every two weeks, twice a month or monthly, or enter each next payday yourself.</p></details>
       <details class="card"><summary>Is it in French?</summary><p>Yes. The app is in English and French (Canada), and every amount is in Canadian dollars.</p></details>
@@ -339,7 +342,7 @@
 <section class="section closing" aria-labelledby="closing-title">
   <div class="wrap">
     <h2 id="closing-title">Know what you can actually afford.</h2>
-    <p class="lede">Free on iPhone. Pro once for CAD 9.99. Coming soon to the App Store.</p>
+    <p class="lede">Headroom is in testing now. Leave your email and you'll get one message the day it's on the App Store.</p>
     <!-- Without JavaScript this posts normally and Formspree shows its own thank-you page. -->
     <form class="notify js-notify" id="notify-closing" action="https://formspree.io/f/xpppegve" method="POST" novalidate>
       <input type="hidden" name="_subject" value="Headroom email list">

@@ -387,7 +387,7 @@
     return (q.get('ref') || q.get('utm_source') || '').replace(/[^\w.-]/g, '').slice(0, 40);
   })();
   const LABEL = 'Email me at launch';
-  const THANKS = 'Thanks. We\'ll email you when Headroom is on the App Store and when there\'s a new update.';
+  const THANKS = 'You\'re on the list. We\'ll email you the day Headroom is on the App Store. Know someone who\'d use it? Send them this page.';
   forms.forEach(notify => {
     const email = $('.js-notify-email', notify);
     const submit = $('.js-notify-submit', notify);
