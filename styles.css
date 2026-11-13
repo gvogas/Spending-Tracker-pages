@@ -92,7 +92,8 @@ body {
 }
 h1, h2, h3 { margin: 0; line-height: 1.15; letter-spacing: -.02em; font-weight: 600; }
 h1 { font-size: clamp(34px, 5.2vw, 58px); letter-spacing: -.025em; }
-h2 { font-size: clamp(27px, 3.4vw, 40px); max-width: 22ch; }
+h2 { font-size: clamp(27px, 3.4vw, 40px); max-width: 22ch; text-wrap: balance; }
+#features-title { max-width: 30ch; }
 h3 { font-size: 17px; letter-spacing: -.01em; }
 p { margin: 0; }
 a { color: var(--accent); }
@@ -553,3 +554,23 @@ svg { display: inline-block; vertical-align: middle; fill: none; stroke: current
 .notify-note { font-size: 13px; color: var(--text-2); }
 .notify.is-done .notify-row, .notify.is-done .notify-note { display: none; }
 @media (max-width: 520px) { .notify-row { flex-direction: column; } .notify .btn { width: 100%; } }
+.notify-hero { margin-top: 26px; }
+.notify-phone { border: 0; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--text-2); }
+.closing .notify-phone { justify-content: center; }
+.notify-phone legend { float: left; padding: 0; margin-right: 4px; }
+.notify-phone label { position: relative; cursor: pointer; }
+.notify-phone input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.notify-phone span { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--hairline); background: var(--card); color: var(--text); font-weight: 600; transition: background-color var(--snappy), color var(--snappy), border-color var(--snappy); }
+.notify-phone input:checked + span { background: var(--soft); color: var(--on-soft); border-color: var(--accent); }
+.notify-phone input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.notify.is-done .notify-phone { display: none; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 14px; font-size: 15px; font-weight: 600; }
+.hero-links a { min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 3px; }
+
+/* Try it */
+.try-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 480px) { .try-fields { grid-template-columns: 1fr; } }
+.try-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--text-2); }
+.try-field .field input { font-size: 20px; min-height: 48px; }
+.try-answer p { margin: 0; }
+.try-answer .verdict { display: block; font-size: 20px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
